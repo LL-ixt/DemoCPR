@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,9 @@ public class CompressionBarFill : MonoBehaviour
     public float bpmScore = 0f;
     public float finalScore = 0f;
 
-    void Start()
+    public TutorialManager tutorialManager;
+    public TextMeshProUGUI progressText;
+    void OnEnable()
     {
         count = 0;
         float controllerY = rightController.localPosition.y;
@@ -40,8 +43,8 @@ public class CompressionBarFill : MonoBehaviour
 
     void Update()
     {
-        float controllerY = rightController.localPosition.y;
-        Debug.Log("Controller Y: " + controllerY);
+        float controllerY = rightController.position.y;
+        //Debug.Log("Controller Y: " + controllerY);
         //Debug.Log("isGoingDown: " + isGoingDown + "reachedBottom: " + reachedBottom);
         // Chuẩn hóa vị trí tay thành [0,1]
         float normalized = Mathf.InverseLerp(chestTopY, chestBottomY, controllerY);
@@ -64,7 +67,16 @@ public class CompressionBarFill : MonoBehaviour
                 reachedBottom = true;
                 isGoingDown = false;
                 count++;
-
+                progressText.text = "Số lần ép: " + count.ToString();
+                if (count == 2)
+                {
+                    tutorialManager.EnterTutorial(TutorialManager.Step.CompressionComplete);
+                }
+                else if (count == 30)
+                {
+                    tutorialManager.EnterTutorial(TutorialManager.Step.BreathSetup);
+                    this.gameObject.SetActive(false);
+                }
                 // --- TÍNH BỎNG NHỊP (BPM) ---
                 float curTime = Time.time;
                 float deltaTime = curTime - lastCompressionTime;

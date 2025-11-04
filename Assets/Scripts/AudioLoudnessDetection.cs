@@ -9,12 +9,6 @@ public class AudioLoudnessDetection : MonoBehaviour
     {
         MicrophoneToAudioClip();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     
     public void MicrophoneToAudioClip()
     {

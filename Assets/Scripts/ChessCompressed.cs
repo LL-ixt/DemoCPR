@@ -34,8 +34,8 @@ public class ChessCompressed : MonoBehaviour
 
     private void HandleCompression()
     {
-
-        float controllerY = rightController.localPosition.y;
+        Debug.Log("Handling Compression!!!");
+        float controllerY = rightController.position.y;
 
         // chỉ xử lý nếu tay đang trong khoảng ép
         if (controllerY < chestTopY && controllerY > chestBottomY)
@@ -50,7 +50,6 @@ public class ChessCompressed : MonoBehaviour
         {
             // tay quá thấp → giữ nguyên scale min
             transform.localScale = new Vector3(1f, minScaleY, 1f);
-            //Debug.Log("Bạn đang ép quá mạnh!");
         }
 
         if (canBeCounted && controllerY < chestTopY)
@@ -70,6 +69,6 @@ public class ChessCompressed : MonoBehaviour
             // khi không ép, trở về scale ban đầu
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
         }
-        //Debug.Log("Controller Y: " + rightController.localPosition.y);
+        Debug.Log("Controller Y: " + rightController.position.y);
     }
 }
