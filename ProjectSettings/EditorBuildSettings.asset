@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Menu.unity
+    guid: 850a73f58ac74124a891595b575324f5
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 99ba49016cd28374fb89023cfead1876
+  - enabled: 1
+    path: Assets/Scenes/ActualCPR.unity
+    guid: cf124d7f6d6e017468336ce69d849464
+  - enabled: 1
+    path: Assets/Scenes/ResultLose.unity
+    guid: 72676ecfdbd833c409ce99114fe47a3b
+  - enabled: 1
+    path: Assets/Scenes/ResultWin.unity
+    guid: b4dca3bba6a2bfa4e901cbf41147260b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e4f166967368eea4db3bf3a7a0ea8128, type: 2}

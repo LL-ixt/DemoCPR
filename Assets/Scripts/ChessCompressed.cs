@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChessCompressed : MonoBehaviour
 {
     public Transform rightController; // tay phải
-    //public Transform breastMesh;      // mesh của ngực
     public float chestTopY;           // đỉnh ngực (ban đầu)
     public float chestBottomY;
     public float chestCountY;        // ngưỡng để tính số lần
@@ -34,7 +33,7 @@ public class ChessCompressed : MonoBehaviour
 
     private void HandleCompression()
     {
-        Debug.Log("Handling Compression!!!");
+        //Debug.Log("Handling Compression!!!");
         float controllerY = rightController.position.y;
 
         // chỉ xử lý nếu tay đang trong khoảng ép
@@ -69,6 +68,6 @@ public class ChessCompressed : MonoBehaviour
             // khi không ép, trở về scale ban đầu
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
         }
-        Debug.Log("Controller Y: " + rightController.position.y);
+        //Debug.Log("Controller Y: " + rightController.position.y);
     }
 }

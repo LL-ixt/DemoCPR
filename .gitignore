@@ -12,6 +12,15 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
+#Backup folder
+/CPR Simulator abc_BurstDebugInformation_DoNotShip/
+/CPR Simulator_BurstDebugInformation_DoNotShip/
+/CPR_BackUpThisFolder_ButDontShipItWithYourGame/
+/iuug_BackUpThisFolder_ButDontShipItWithYourGame/
+
+#Packages
+/Packages/
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/

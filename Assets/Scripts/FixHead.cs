@@ -6,7 +6,7 @@ public class FixHead : MonoBehaviour
     private Quaternion initialRotation;
     private float minAngle = 8f;
     private float thresholdAngle = 15f; // Ngưỡng góc nghiêng đầu
-    public GameObject isHeadTilted; 
+    public GameObject isHeadTilted;
     void Start()
     {
         initialWorldPosition = transform.position;

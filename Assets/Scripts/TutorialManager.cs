@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System.Numerics;
 using Vector3 = UnityEngine.Vector3;
 using System;
+using UnityEngine.SceneManagement;
 public class TutorialManager : MonoBehaviour
 {
     public enum Step
@@ -19,8 +20,7 @@ public class TutorialManager : MonoBehaviour
         BreathSetup,
         BreathPractice,
         LoopingCPR,
-        Success,
-        Fall
+        GoToActualScene
     }
     public TextMeshProUGUI instructionText;
     public TextMeshProUGUI progressText;
@@ -28,10 +28,11 @@ public class TutorialManager : MonoBehaviour
     public GameObject compressionBar;
 
     [Header("Recenter")]
-    public Transform head;
+    public Transform rightController;
     public Transform origin;
     public Transform target;
     public InputActionProperty recenterButton;
+    public SceneTransitionManager sceneTransitionManager;
     
     void Start()
     {
@@ -46,18 +47,20 @@ public class TutorialManager : MonoBehaviour
     }
     private void Recenter()
     {
-        Vector3 offset = head.position - origin.position;
-        offset.y = 0;
+        Vector3 offset = rightController.position - origin.position;
+        //offset.y = 0; // chỉ dịch theo mặt phẳng ngang
+
+        // Di chuyển origin sao cho tay phải nằm đúng vị trí target
         origin.position = target.position - offset;
 
+        // Xoay origin sao cho hướng của tay phải trùng với hướng của target
         Vector3 targetForward = target.forward;
         targetForward.y = 0;
-        Vector3 cameraForward = head.forward;
-        cameraForward.y = 0;
+        Vector3 handForward = rightController.forward;
+        handForward.y = 0;
 
-        float angle = Vector3.SignedAngle(cameraForward, targetForward, Vector3.up);
-
-        origin.RotateAround(head.position, Vector3.up, angle);
+        float angle = Vector3.SignedAngle(handForward, targetForward, Vector3.up);
+        origin.RotateAround(rightController.position, Vector3.up, angle);
         EnterTutorial(Step.CompressionPractice);
     }
     public void EnterTutorial(Step step)
@@ -100,6 +103,11 @@ public class TutorialManager : MonoBehaviour
                 break;
             case Step.LoopingCPR:
                 instructionText.text = "Lặp lại chu kỳ 30 ép và 2 thổi cho đến khi nạn nhân tỉnh lại.";
+                nextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Start CPR";
+                nextButton.gameObject.SetActive(true);
+                break;
+            case Step.GoToActualScene:
+                sceneTransitionManager.GoToSceneAsync("ActualCPR");
                 break;
         }
     }
