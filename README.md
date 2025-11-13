@@ -1,7 +1,7 @@
 # CPR Simulator
 
 ## How to Play (For Quest 2)
-Your mission is to perform CPR on the victim, who have an HP bar starting at 50/100.
+Your mission is to perform CPR on the victim, who has an HP bar starting at 50/100.
 
 You have 2 minutes to do so.
 After this time, the victim’s HP will automatically drop to 0.
